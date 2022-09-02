@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>好稿评选系统》》登陆</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+ </head>
+<body>
+{% for message in get_flashed_messages() %}
+<div class="alert">{{ message }}</div>
+{% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-d">
+            <form action="" role="form" method="post">
+                {{ form.csrf_token }}
+                <fieldset>
+                    <legend>用户登陆</legend>
+                    <div class="form-group">
+                        <label for="name">用户名称</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label for="name">用户密码</label>
+                        {{ form.password }}
+                    </div>
+                    <div class="form-group">
+                        <label for="name">验证码</label>
+                        {{ form.verify_code }}
+                        <p><img id="verify_code" class="verify_code" src="/imgCode"></p>
+                    </div>
+                </fieldset>
+                {{ form.submit }}
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

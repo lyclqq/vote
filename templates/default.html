@@ -1,0 +1,27 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<div>
+    {% if result != None %}
+    <div class="row">
+        <ul class="list-group">
+            {% for post in result %}
+            <li class="list-group-item">
+                {{ post.article.id }}
+                <a href="{{ post.article.titlelink }}">
+                {{ post.article.title }}</a>
+                <strong>{{ post.score }}</strong>
+
+                <span class="badge">
+                <a href="{{ url_for('uservote',aid=post.id) }}">
+                    投票
+                </a></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    没有数据
+    {% endif %}
+
+</div>
+{% endblock %}

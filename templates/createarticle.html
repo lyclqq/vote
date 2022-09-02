@@ -1,0 +1,46 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                {{ form.csrf_token }}
+                <fieldset>
+                    <legend>文章新增</legend>
+                    <div class="form-group">
+                        {{ form.title.label }}
+                        {{ form.title() }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.titlelink.label }}
+                        {{ form.titlelink() }}
+                    </div>
+                                        <div class="form-group">
+                        {{ form.author.label }}
+                        {{ form.author() }}
+                    </div>
+                                        <div class="form-group">
+                        {{ form.types.label }}
+                        {{ form.types() }}
+                    </div>
+                                        <div class="form-group">
+                        {{ form.pubdate.label }}
+                        {{ form.pubdate() }}
+                    </div>
+                                        <div class="form-group">
+                        {{ form.cause.label }}
+                        {{ form.cause() }}
+                    </div>
+                                        <div class="form-group">
+                        {{ form.content.label }}
+                        {{ form.content() }}
+                    </div>
+                </fieldset>
+                {{ form.submit }}
+                {{ ckeditor.load() }}
+                {{ ckeditor.config(name='content') }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

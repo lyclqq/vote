@@ -1,0 +1,38 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<form method="post" >
+    {{ form.csrf_token
+    }}
+<div>
+
+    {% if result != None %}
+    <div class="row">
+       <table class="table">
+           <tr><th>ID</th>
+               <th>
+                   标题
+               </th>
+               <th>第一轮得分</th>
+               <th>第二轮得分</th>
+              <th>总分</th>
+           </tr>
+            {% for post in result %}
+            <tr><td>
+                {{ post.id }}</td>
+                <td>
+                <a href="{{ post.titlelink }}">
+                {{ post.title }}</a></td>
+                <td>{{ post.score1 }} </td>
+<td>{{ post.score2 }} </td>
+                <td>{{ post.score }} </td>
+            </li>
+            {% endfor %}
+        </table>
+    </div>
+    {% else %}
+    没有数据
+    {% endif %}
+{{ form.submit }}
+</div>
+</form>
+{% endblock %}

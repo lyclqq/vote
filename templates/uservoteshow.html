@@ -1,0 +1,23 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<div>
+    {% if result != None %}
+    <div class="row">
+        <ul class="list-group">
+            {% for post in result %}
+            <li class="list-group-item">
+                {{ post.article_id }}
+                <a href="{{ post.article.titlelink }}">
+                {{ post.article.title }}</a>
+                ({{ post.score }} )
+
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    没有数据
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<div>
+    {% if result != None %}
+    <div class="row">
+        <ul class="list-group">
+            {% for post in result %}
+            <li class="list-group-item">
+                {{ post.id }}
+                【{{ post.usertype }}】
+                <strong>{{ post.username}}</strong>({{ post.password }})
+                <span class="badge"><a href="{{ url_for('user.userdelete',uid=post.id) }}">
+                    删除
+                </a></span>
+                <span class="badge">
+                <a href="{{ url_for('user.pwd',uid=post.id) }}">
+                    还原密码
+                </a></span>
+                <span class="badge">
+                <a href="{{ url_for('user.uservoteshow',uid=post.id) }}">
+                    投票情况
+                </a></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    没有数据
+    {% endif %}
+    <div class="row">
+        <ul class="pager">
+            <li>
+                <a href="{{ url_for('user.usercreate') }}">新增用户</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

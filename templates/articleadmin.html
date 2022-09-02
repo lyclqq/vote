@@ -1,0 +1,35 @@
+{% extends 'userbase.html' %}
+{% block content %}
+<div>
+    {% if result != None %}
+    <div class="row">
+        <ul class="list-group">
+            {% for post in result %}
+            <li class="list-group-item">
+                {{ post.id }}
+                <a href="{{ post.titlelink }}">
+                {{ post.title }}</a>
+                <strong>{{ post.author }}</strong>({{ post.pubdate }})
+                <span class="badge"><a href="">
+                    删除
+                </a></span>
+                <span class="badge">
+                <a href="{{ url_for('article.articlevoteshow',aid=post.id) }}">
+                    投票情况
+                </a></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    没有数据
+    {% endif %}
+    <div class="row">
+        <ul class="pager">
+            <li>
+                <a href="{{ url_for('article.articlecreate') }}">新增文章</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

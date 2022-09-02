@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>年度好稿评选</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/css.css') }}">
+</head>
+<body >
+<nav class="navbar navbar-custom" role="navigation" >
+    <div class="container-fluid">
+            <!--header section -->
+            <div class="container">
+                <div class="navbar-header col-md-3">
+                    <div class="navbar-brand text-center">
+                        <a href="{{url_for('default')}}" >年度好稿评选</a>
+                    </div>
+                </div>
+                <!-- menu section -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse ">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if g.utype =='admin': %}
+                        <li class="toplink"><a href="{{url_for('article.scoreadmin')}}" >稿件得分</a></li>
+                        <li class="toplink"><a href="{{url_for('article.articleadmin')}}" >文章管理</a></li>
+                        <li class="toplink"><a href="{{url_for('user.useradmin')}}">用户管理</a></li>
+                        <li class="toplink"><a href="{{url_for('admin.create_vote')}}" >生成投票</a></li>
+                        {% else %}
+                        <li class="toplink"><a href="{{url_for('default')}}" >返回首页</a></li>
+                        <li class="toplink"><a href="{{ url_for('default') }}" >投票说明</a></li>
+                        {%endif %}
+                        <li class="toplink"><a href="{{url_for('default')}}">退出</a></li>
+                        <li><a href="{{url_for('default')}}">欢迎{{ g.uname }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+</nav>
+ <div class="container" style="background-color:#fff">
+     {% for message in get_flashed_messages() %}
+         <div class="alert">{{ message }}</div>
+     {% endfor %}
+     <div class="row text-center footer" style="background-color:#ed1f1f;height:120px;letter-spacing:16px;">
+        <div class="col-sm-12 footer-copyright" style="margin:25px;color:#F9F900;font-size:48px;font-family:STKaiti ;font-weight:bold;">
+            作示范、勇争先
+        </div></div>
+     {% block content%}
+     {% endblock%}
+ </div>
+<!--底部-->
+<div class="container">
+
+    <div class="row text-center footer" style="background-color:#ed1f1f;height:120px;">
+        <div class="col-sm-12 footer-copyright" style="margin-top:50px;color:#fff;font-size:16px;">
+            技术中心 © 2022
+        </div>
+    </div>
+</div>
+</body>
+</html>
